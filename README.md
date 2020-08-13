@@ -1,5 +1,7 @@
 # Computer Graphics: Drawing Triangles with WebGL
 
+In this lab, you will learn how to draw triangles on the HTML5 canvas in JavaScript using WebGL. Triangles will be drawn directly in Clip Space; there will be no transforms necessary.
+
 Start by downloading the contents of this repository. You'll only need the contents of the `triangleDemo` folder (the other contents are for these instructions).
 
 We will cover the following topics, in this order:
