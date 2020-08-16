@@ -99,30 +99,3 @@ class resourceImporter
 		}
 	}
 }
-
-var JSONToMesh = function(modelJSON, imageID, gl, program, flipTexture)
-{
-	var positionArray = modelJSON.meshes[0].vertices;
-	var texCoordArray = modelJSON.meshes[0].texturecoords[0];
-	var normalArray = modelJSON.meshes[0].normals;
-	var indexArray = [].concat.apply([], modelJSON.meshes[0].faces);
-
-	return new UVMesh(gl, program, positionArray, indexArray, normalArray, texCoordArray, imageID, flipTexture);
-}
-
-var ThreeJSToMesh = function(threeJSON, imageID, gl, program, flipTexture)
-{
-	var indexArray = threeJSON.data.index.array;
-	var positionArray = threeJSON.data.attributes.position.array;
-	var texCoordArray = threeJSON.data.attributes.uv.array;
-	var normalArray = threeJSON.data.attributes.normal.array;
-
-	return new UVMesh(gl, program, positionArray, indexArray, normalArray, texCoordArray, imageID, flipTexture);
-}
-
-
-
-
-
-
-
