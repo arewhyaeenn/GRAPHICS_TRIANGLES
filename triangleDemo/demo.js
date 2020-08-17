@@ -372,12 +372,12 @@ var InitDemo = function()
 {
 	// files to import
 	var imports = [
-		// key             path                 type
-		["vertShaderText", "shaders/vert.glsl", "text"],
-		["fragShaderText", "shaders/frag.glsl", "text"]
+		// key             path
+		["vertShaderText", "shaders/vert.glsl"],
+		["fragShaderText", "shaders/frag.glsl"]
 	];
 
-	// The importer imports the requested files (as text or JSON)
+	// The importer imports the requested files (as strings)
 	// and puts them in a dictionary called "filemap" in the RunDemo function above.
 	// The dictionary is a hashmap
 		// key --> file

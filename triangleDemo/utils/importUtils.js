@@ -13,44 +13,16 @@ var loadTextResource = function(url, callback, importer)
 	request.send();
 };
 
-var loadJSONResource = function (url, callback, importer)
-{
-	loadTextResource(
-		url,
-		function(err, result, importer)
-		{
-			if (err)
-			{
-				callback(err);
-			}
-			else
-			{
-				try
-				{
-					callback(null, JSON.parse(result), importer);
-				}
-				catch (err2)
-				{
-					callback(err2);
-				}
-			}
-		},
-		importer
-	);
-}
-
 class resourceImporter
 {
 	constructor(imports, onLoad)
 	{
 		this.keys = [];
 		this.urls = [];
-		this.types = [];
 		for (var i = 0; i < imports.length; i++)
 		{
 			this.keys.push(imports[i][0]);
 			this.urls.push(imports[i][1]);
-			this.types.push(imports[i][2]);
 		}
 
 		this.fileMap = {};
@@ -63,20 +35,8 @@ class resourceImporter
 	{
 		if (this.index < this.urls.length)
 		{
-			var type = this.types[this.index];
 			var url = this.urls[this.index];
-			if (type == "text")
-			{
-				loadTextResource(url, this.callback, this);
-			}
-			else if (type == "json")
-			{
-				loadJSONResource(url, this.callback, this);
-			}
-			else
-			{
-				console.error("Invalid file import type:", type);
-			}
+			loadTextResource(url, this.callback, this);
 		}
 		else
 		{
