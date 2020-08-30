@@ -65,7 +65,7 @@ var RunDemo = function(filemap)
 	if (!gl.getShaderParameter(vertShader, gl.COMPILE_STATUS))
 	{
 		// if it didn't compile correctly, log the reason in the console
-		console.error("Cannot compile vertex shader.", gl.getShaderInforLog(vertexShader));
+		console.error("Cannot compile vertex shader.", gl.getShaderInfoLog(vertexShader));
 		return; // we can't continue without a working vertex shader
 	}
 
@@ -73,7 +73,7 @@ var RunDemo = function(filemap)
 	gl.compileShader(fragShader);
 	if (!gl.getShaderParameter(fragShader, gl.COMPILE_STATUS))
 	{
-		console.error("Cannot compile fragment shader.", gl.getShaderInfoLoc(fragmentShader));
+		console.error("Cannot compile fragment shader.", gl.getShaderInfoLog(fragmentShader));
 		return;
 	}
 
