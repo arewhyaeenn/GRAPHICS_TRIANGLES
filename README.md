@@ -200,9 +200,9 @@ This snippet does the following:
 
 * Specifies the area in which the WebGL context referenced by `gl` is allowed to draw.
 * Sets the background color to `(0.0, 0.0, 0.0, 1.0)`. The first three elements are the red, green and blue values of the background color, which is currently set to black. The fourth element specifies the alpha of the background color, which is currently set to `1.0`, meaning "completely opaque", where `0.0` would mean "completely transparent".
-* Enables the "depth test", so items which are "behind" other items can be omitted from drawing. If you comment out `gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);`, the three outer triangles in the display will suddenly appear to be in front of the multi-colored one in the middle, even though we will draw them behind the middle one, because they are drawn after the middle one we don't skip drawing the parts that are behind the middle one.
+* Enables the "depth test", so items which are "behind" other items can be omitted from drawing. If you comment out `gl.enable(gl.DEPTH_TEST);`, the three outer triangles in the display will suddenly appear to be in front of the multi-colored one in the middle even though we will draw them behind the middle one. Because the three outer triangles are drawn after the middle one and the depth test is diabled we don't skip drawing the parts that are behind the middle one.
 * Specifies which side of each triangle is the "front".
-	* A triangle is specified as three vertices (the cornders), and the order of these vertices matters. The triangle is only visible from one side: the side from which the three vertices, in the specified order, create a counter-clockwise cycle (hence `CCW`).
+	* A triangle is specified as three vertices (the corners), and the order of these vertices matters. The triangle is only visible from one side: the side from which the three vertices, in the specified order, create a counter-clockwise cycle (hence `CCW`).
 * Tells WebGL not to draw the backs of the triangles; triangles are all invisible from behind. There's no reason to draw faces that we can't see, so it would be wasted work to do so.
 
 ## Compile Shaders
@@ -225,7 +225,7 @@ gl.compileShader(vertShader);
 if (!gl.getShaderParameter(vertShader, gl.COMPILE_STATUS))
 {
 	// if it didn't compile correctly, log the reason in the console
-	console.error("Cannot compile vertex shader.", gl.getShaderInforLog(vertexShader));
+	console.error("Cannot compile vertex shader.", gl.getShaderInfoLog(vertexShader));
 	return; // we can't continue without a working vertex shader
 }
 
@@ -233,7 +233,7 @@ if (!gl.getShaderParameter(vertShader, gl.COMPILE_STATUS))
 gl.compileShader(fragShader);
 if (!gl.getShaderParameter(fragShader, gl.COMPILE_STATUS))
 {
-	console.error("Cannot compile fragment shader.", gl.getShaderInfoLoc(fragmentShader));
+	console.error("Cannot compile fragment shader.", gl.getShaderInfoLog(fragmentShader));
 	return;
 }
 ```
